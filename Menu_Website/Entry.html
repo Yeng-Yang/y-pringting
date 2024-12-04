@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<style>
+  body{
+    background-color: aquamarine;
+    font-family: Phetsarath OT;
+  }
+  .Home_btn{
+    text-align: left;
+  }
+  *{
+    font-family: Phetsarath OT;
+  }
+  iframe{
+    width: 100%;
+    height: 600px;
+  }
+</style>
+<body>
+  <center><h1 class="Well_Come">ຍິນດີຕ້ອນຮັບເຂົ່າສູ່ລະບົບການເຮັດວຽກ</h1></center>
+  <div class="Menu_Color">
+    <center>
+<a href="../Index.html">ໜ້າຫຼັກ</a>
+ <a href="Entry.html">ຟອມບັນທຶກ</a>
+ <a href="History.html">ປະຫວັດການເຄື່ອນໄຫວ</a>
+
+
+  </center>
+  </div>
+  <hr>
+  <div class="Show_form">
+    <button class="Income_btn" type="submit" id="submit-button">ຮັບເຂົ້າ</button>
+    <button class="Expense_btn" type="submit" id="submit-button">ຈ່າຍອອກ</button>
+    
+    <div  class="Income_Form">
+      <form method="post" autocomplete="off" name="hello-sheet">
+        <div class="form-group">
+          <label for="name">BarCode ID</label>
+          <input type="text" class="form-control"  placeholder="BarCode ID" name="BarCode ID" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ຊື່ປື້ມວິຊາ</label>
+          <input type="text" class="form-control"  placeholder="ຊື່ປື້ມວິຊາ" name="ຊື່ປື້ມວິຊາ" required>
+        </div>
+         <div class="form-group">
+        <label for="name">ການເຄື່ອນໄຫວ</label>
+          <input type="text" class="form-control"  placeholder="ການເຄື່ອນໄຫວ" name="ການເຄື່ອນໄຫວ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ຈຳນວນຮັບເຂົ້າ</label>
+          <input type="text" class="form-control"  placeholder="ຈຳນວນຮັບເຂົ້າ" name="ຈຳນວນຮັບເຂົ້າ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ຄຳອະທິບາຍ</label>
+          <input type="text" class="form-control"  placeholder="ຄຳອະທິບາຍ" name="ຄຳອະທິບາຍ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ວັນທີເດືອນປີ</label>
+          <input type="text" class="form-control"  placeholder="ວັນທີເດືອນປີ" name="ວັນທີເດືອນປີ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ເລກທີ</label>
+          <input type="text" class="form-control"  placeholder="ເລກທີ" name="ເລກທີ" required>
+        </div>
+     
+        
+      <button type="submit" name="submit" value="Send message" class="btn btn-primary">ບັນທຶກ</button>
+      <button type="reset" name="reset">reset</button>
+    </form>
+    </div>
+    <div class="Expense_Form">
+      <form method="post" autocomplete="off" name="hello-sheet">
+        <div class="form-group">
+          <label for="name">BarCode ID</label>
+          <input type="text" class="form-control"  placeholder="BarCode ID" name="BarCode ID" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ຊື່ປື້ມວິຊາ</label>
+          <input type="text" class="form-control"  placeholder="ຊື່ປື້ມວິຊາ" name="ຊື່ປື້ມວິຊາ" required>
+        </div>
+         <div class="form-group">
+        <label for="name">ການເຄື່ອນໄຫວ</label>
+          <input type="text" class="form-control"  placeholder="ການເຄື່ອນໄຫວ" name="ການເຄື່ອນໄຫວ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ຈຳນວນຈ່າຍອອກ</label>
+          <input type="text" class="form-control"  placeholder="ຈຳນວນຈ່າຍອອກ" name="ຈຳນວນຈ່າຍອອກ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ຄຳອະທິບາຍ</label>
+          <input type="text" class="form-control"  placeholder="ຄຳອະທິບາຍ" name="ຄຳອະທິບາຍ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ວັນທີເດືອນປີ</label>
+          <input type="text" class="form-control"  placeholder="ວັນທີເດືອນປີ" name="ວັນທີເດືອນປີ" required>
+        </div>
+        <div class="form-group">
+        <label for="name">ເລກທີ</label>
+          <input type="text" class="form-control"  placeholder="ເລກທີ" name="ເລກທີ" required>
+        </div>
+     
+        
+      <button type="submit" name="submit" value="Send message" class="btn btn-primary">ບັນທຶກ</button>
+      <button type="reset" name="reset">Reset</button>
+    </form>
+    </div>
+  </div>
+
+
+<script>
+ $(".Expense_Form").hide();
+ $(".Home_Form").hide();
+
+
+$(".Expense_btn").click(function(){
+  $(this).addClass("active");
+  $(".Expense_Form").show();
+   $(".Income_Form").hide();
+})
+
+$(".Income_btn").click(function(){
+  $(this).addClass("active");
+  $(".Income_Form").show();
+   $(".Expense_Form").hide();
+})
+
+</script>
+
+</body>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxdIJGARi6YX7d6Ivgq6DFJqX0gjrLBNljI4uZ4JYN7GwqV9oINYUHQaKUVXBI4rBHH/exec'
+  const form = document.forms['hello-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => alert("ບັນທຶກສຳເລັດ"))
+      .catch(error => console.error('Error!', error.message))
+      
+  })
+</script>
+
+</body>
+
+</html>
