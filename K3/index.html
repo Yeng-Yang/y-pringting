@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ອານຸບານ 3</title>
+    <!-- ນຳໃຊ້ Font Noto Sans Lao ສຳລັບພາສາລາວ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ເຊື່ອມຕໍ່ໄຟລ໌ CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Library ສຳລັບສ້າງ PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <!-- ໃສ່ຮູບໂລໂກ້ບ່ອນນີ້ (ປ່ຽນ logo.png ເປັນຊື່ໄຟລ໌ຮູບຂອງທ່ານ) -->
+        <img src="logo.jpeg" alt="Logo" style="width: 100%; height: 3cm; object-fit: fill; margin-bottom: 10px;">
+        <h1>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ພາກຮຽນທີ I ປີ 2025-2026</h1>
+        <h2>ຫ້ອງ ອານຸບານ 3</h2>
+    </header>
+
+    <table class="header-table">
+        <tr>
+            <td width="50%">ຊື່ ແລະ ນາມສະກຸນ:<br><input type="text" id="studentName" placeholder="..."></td>
+            <td width="20%" align="center">ຄະແນນ<br><span id="scoreDisplay" style="font-size: 18px; font-weight: bold; color: red;"></span></td>
+            <td width="30%">ຄຳເຫັນຂອງຄູ:<br><br></td>
+        </tr>
+    </table>
+
+    <form id="quizForm">
+        <!-- ພາກທີ 1 -->
+        <div class="section-title"> ພາກທີ 1: ຄວາມຮູ້ພື້ນຖານກ່ຽວກັບຄອມພິວເຕີ</div>
+        <p style="margin: 10px 0;">ຄຳສັ່ງ: ຈົ່ງໝາຍວົງມົນອ້ອມຄຳຕອບທີ່ຖືກຕ້ອງທີ່ສຸດພຽງຂໍ້ດຽວ</p>
+
+        <div class="question-grid">
+        <div class="question">
+            <p>1. ອຸປະກອນໃດທີ່ເບິ່ງຄື "ໜ້າຈໍ TV"?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> ກ. 🖥️ (ຈໍພາບ)</label>
+                <label><input type="radio" name="q1" value="b"> ຂ. 🖱️ (ເມົ້າ)</label>
+                <label><input type="radio" name="q1" value="c"> ຄ. ⌨️ (ແປ້ນພິມ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>2. ປຸ່ມທີ່ໃຊ້ເປີດເຄື່ອງມີສັນຍາລັກວົງມົນທີເຮົາໃຊ້ເປີດເຄື່ອງຄອມພິວເຕີແມ່ນຮູບໃດ?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> ກ. ♻️</label>
+                <label><input type="radio" name="q2" value="b"> ຂ. ⏻ (ປຸ່ມ Power)</label>
+                <label><input type="radio" name="q2" value="c"> ຄ. 🔊</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>3. ໜ້າຈໍ ມີໜ້າທີ່ເຮັດຫຍັງແດ່?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="a"> ກ. ສະແດງຜົນໃຫ້ເຮົາເຫັນໄດ້ເຊັ່ນ: ເບິ່ງໜັງກະຕຸນ</label>
+                <label><input type="radio" name="q3" value="b"> ຂ. ປ້ອນຂໍ້ມູນເຂົ້າໄປໃນຄອມພິວເຕີ</label>
+                <label><input type="radio" name="q3" value="c"> ຄ. ພິມຮູບອອກ</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>4. ເຮົາໃຊ້ຫຍັງໃນການ "ເລື່ອນ" ລູກສອນ ↗️ ໄປມາໃນໜ້າຈໍ?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="a"> ກ. ໃຊ້ແປ້ນພິມ ⌨️</label>
+                <label><input type="radio" name="q4" value="b"> ຂ. ໃຊ້ເມົ້າ 🖱️</label>
+                <label><input type="radio" name="q4" value="c"> ຄ. ໃຊ້ USB 💾</label>
+            </div>
+        </div>
+        </div>
+
+        <!-- ພາກທີ 2 -->
+        <div class="section-title"> ພາກທີ 2: ໂປຣແກຣມແຕ້ມຮູບ (Microsoft Paint)</div>
+
+        <div class="question-grid">
+        <div class="question">
+            <p>5. ຮູບ "ສໍ" ✏️ (Pencil) ໃຊ້ໄວ້ເຮັດຫຍັງ?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="a"> ກ. ແຕ້ມຮູບ</label>
+                <label><input type="radio" name="q5" value="b"> ຂ. ເທສີໃສ່ຮູບ</label>
+                <label><input type="radio" name="q5" value="c"> ຄ. ລຶບສ່ວນທີ່ບໍ່ຕ້ອງການ</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>6. ຮູບ "ຢາງລຶບ" 🧽 (Eraser) ໃຊ້ໄວ້ເຮັດຫຍັງ?</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="a"> ກ. ແຕ້ມຮູບ</label>
+                <label><input type="radio" name="q6" value="b"> ຂ. ລຶບສ່ວນທີ່ບໍ່ຕ້ອງການ</label>
+                <label><input type="radio" name="q6" value="c"> ຄ. ເທສີໃສ່ຮູບ</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>7. ຮູບ "ຖັງສີ" 🪣 (Fill with color) ໃຊ້ໄວ້ເຮັດຫຍັງ?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="a"> ກ. ແຕ້ມຮູບ</label>
+                <label><input type="radio" name="q7" value="b"> ຂ. ລຶບສ່ວນທີ່ບໍ່ຕ້ອງການ</label>
+                <label><input type="radio" name="q7" value="c"> ຄ. ເທສີໃສ່ຮູບ</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>8. ຖ້າຢາກແຕ້ມຮູບ "ວົງມົນ" ເຮົາຕ້ອງເລືອກຮູບໃດ?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="a"> ກ. ⬜ (ສີ່ຫຼ່ຽມ)</label>
+                <label><input type="radio" name="q8" value="b"> ຂ. ⭕ (ວົງມົນ)</label>
+                <label><input type="radio" name="q8" value="c"> ຄ. 🔺 (ສາມຫຼ່ຽມ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>9. ຕົວອັກສອນ "A" ໃນ Paint ໃຊ້ໄວ້ເຮັດຫຍັງ?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="a"> ກ. ພິມຕົວໜັງສື</label>
+                <label><input type="radio" name="q9" value="b"> ຂ. ແຕ້ມເສັ້ນຊື່</label>
+                <label><input type="radio" name="q9" value="c"> ຄ. ຂະຫຍາຍຮູບ</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>10. ຖ້າຢາກປ່ຽນສີ ເຮົາຕ້ອງໄປເລືອກຢູ່ໃສ?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="a"> ກ. 🖌️ (ແປງທາສີ)</label>
+                <label><input type="radio" name="q10" value="b"> ຂ. 🎨 (ກ່ອງສີ/Color Palette)</label>
+                <label><input type="radio" name="q10" value="c"> ຄ. 🔍 (ແວ່ນຂະຫຍາຍ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>11. ເຮົາສາມາດແຕ້ມຮູບເຮືອນ 🏠 ຢູ່ໃນຄອມພິວເຕີໄດ້ບໍ່?</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="a"> ກ. ໄດ້ (✓)</label>
+                <label><input type="radio" name="q11" value="b"> ຂ. ບໍ່ໄດ້ (×)</label>
+            </div>
+        </div>
+
+        <div class="question" style="grid-column: span 2;">
+            <p>12. ເວລາແຕ້ມຮູບແລ້ວ ຄວນເຮັດແນວໃດ ມັນຈຶ່ງບໍ່ເສຍ?</p>
+            <input type="text" name="q12" placeholder="ຕອບ: .........................">
+            <small style="display:block; color:gray; margin-top:5px;">(ຄຳແນະນຳ: ພິມຄຳວ່າ "ບັນທຶກ" ຫຼື "Save")</small>
+        </div>
+        </div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+    </form>
+
+</div>
+<div id="result"></div>
+
+<!-- ເຊື່ອມຕໍ່ໄຟລ໌ JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
