@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ຊັ້ນປະຖົມສຶກສາປີທີ 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.jpeg" alt="Logo" class="logo">
+            <h1>ບົດສອບເສັງ ຊັ້ນປະຖົມສຶກສາປີທີ 3 (Grade 3)</h1>
+            <h2>ວິຊາ: ຄອມພິວເຕີ ພາກຮຽນທີ I ສົກຮຽນ 2025-2026</h2>
+        </header>
+
+        <table class="header-table">
+            <tr>
+                <td style="width: 40%;">ຊື່ ແລະ ນາມສະກຸນ: <input type="text" id="studentName" placeholder="ພິມຊື່ນັກຮຽນໃສ່ບ່ອນນີ້..."></td>
+                <td style="width: 20%;">ຄະແນນ:<br><span id="scoreDisplay">...</span>/10</td>
+                <td style="width: 40%;">ຄຳເຫັນຂອງຄູ:<br><span id="teacherComment">...</span></td>
+            </tr>
+        </table>
+
+        <form id="quizForm">
+            <!-- Step 1: Q1-Q5 -->
+            <div class="step active">
+                <div class="section-title">ພາກທີ 1: ຄວາມຮູ້ພື້ນຖານ (ຂໍ້ 1-5)</div>
+                <div class="question-grid">
+                    <!-- Q1 -->
+                    <div class="question">
+                        <p>1. ອຸປະກອນໃນຂໍ້ໃດຕໍ່ໄປນີ້ ຈັດຢູ່ໃນ "ໜ່ວຍປ້ອນຂໍ້ມູນ" (Input Unit) ທັງໝົດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> ກ. ຈໍພາບ (Monitor) ແລະ ລຳໂພງ (Speaker)</label>
+                            <label><input type="radio" name="q1" value="b"> ຂ. ຄີບອດ (Keyboard) ແລະ ເມົາສ໌ (Mouse)</label>
+                            <label><input type="radio" name="q1" value="c"> ຄ. ເຄື່ອງພິມ (Printer) ແລະ ຈໍພາບ (Monitor)</label>
+                            <label><input type="radio" name="q1" value="d"> ງ. ເຄສ (Case) ແລະ ປັກໄຟ (Plug)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="question">
+                        <p>2. ຖ້າພວກເຮົາຕ້ອງການເກັບຂໍ້ມູນຈຳນວນຫຼາຍ (ເຊັ່ນ: ຮູບພາບ, ວິດີໂອ, ຫຼື ບົດຮຽນ) ໄວ້ໃນເຄື່ອງຄອມພິວເຕີຢ່າງຖາວອນ ຕ້ອງເກັບໄວ້ໃນອຸປະກອນໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> ກ. ແປ້ນພິມ (Keyboard)</label>
+                            <label><input type="radio" name="q2" value="b"> ຂ. ຮາດດິສ (Hard Disk)</label>
+                            <label><input type="radio" name="q2" value="c"> ຄ. ເມົາສ໌ (Mouse)</label>
+                            <label><input type="radio" name="q2" value="d"> ງ. ໜ້າຈໍ (Monitor)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="question">
+                        <p>3. ການປິດເຄື່ອງຄອມພິວເຕີ (Shut down) ທີ່ຖືກຕ້ອງຕາມຂັ້ນຕອນ ເຮົາຄວນຄລິກໄປທີ່ເມນູໃດກ່ອນ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> ກ. ເມນູ File (ໄຟລ໌)</label>
+                            <label><input type="radio" name="q3" value="b"> ຂ. ປຸ່ມ Start (ສະຕາດ)</label>
+                            <label><input type="radio" name="q3" value="c"> ຄ. ປຸ່ມ Google Chrome</label>
+                            <label><input type="radio" name="q3" value="d"> ງ. ປຸ່ມ Recycle Bin (ຖັງຂີ້ເຫຍື້ອ)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="question">
+                        <p>4. ຖ້າຢາກປ່ຽນ "ຟອນ" (Font) ຫຼື ຮູບແບບຕົວໜັງສື ຕ້ອງໄປທີ່ໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> ກ. ຢູ່ແຖບ Home (ໜ້າທຳອິດ) ໃນສ່ວນຂອງ Font</label>
+                            <label><input type="radio" name="q4" value="b"> ຂ. ຢູ່ແຖບ Insert (ແຊກ)</label>
+                            <label><input type="radio" name="q4" value="c"> ຄ. ຢູ່ແຖບ Help (ຊ່ວຍເຫຼືອ)</label>
+                            <label><input type="radio" name="q4" value="d"> ງ. ຢູ່ຖັງຂີ້ເຫຍື້ອ (Recycle Bin)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="question">
+                        <p>5. ໃນເວລາທີ່ພວກເຮົາພິມຂໍ້ຄວາມຜິດ ຫຼື ເຮັດສິ່ງໃດໜຶ່ງຜິດພາດ ແລະ ຢາກ "ຍົກເລີກ" ການກະທຳນັ້ນ ເພື່ອໃຫ້ມັນກັບຄືນມາຄືເກົ່າ ຕ້ອງກົດປຸ່ມໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> ກ. ປຸ່ມ Save (ບັນທຶກ)</label>
+                            <label><input type="radio" name="q5" value="b"> ຂ. ປຸ່ມ Undo (ຍົກເລີກ) ຫຼື ກົດ Ctrl + Z</label>
+                            <label><input type="radio" name="q5" value="c"> ຄ. ປຸ່ມ Print (ພິມອອກເຈ້ຍ)</label>
+                            <label><input type="radio" name="q5" value="d"> ງ. ປຸ່ມ Shut down (ປິດເຄື່ອງ)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Q6-Q10 -->
+            <div class="step">
+                <div class="section-title">ພາກທີ 2: ການນຳໃຊ້ ແລະ ບົວລະບັດຮັກສາ (ຂໍ້ 6-10)</div>
+                <div class="question-grid">
+                    <!-- Q6 -->
+                    <div class="question">
+                        <p>6. ອຸປະກອນໃນຂໍ້ໃດຕໍ່ໄປນີ້ ຈັດຢູ່ໃນ "ໜ່ວຍສະແດງຜົນ" (Output Unit) ທີ່ເຮັດໜ້າທີ່ສົ່ງຂໍ້ມູນອອກມາໃຫ້ພວກເຮົາເຫັນ ຫຼື ໄດ້ຍິນ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> ກ. ເມົາສ໌ (Mouse) ແລະ ຄີບອດ (Keyboard)</label>
+                            <label><input type="radio" name="q6" value="b"> ຂ. ຈໍພາບ (Monitor) ແລະ ລຳໂພງ (Speaker)</label>
+                            <label><input type="radio" name="q6" value="c"> ຄ. ເຄື່ອງສະແກນ (Scanner) ແລະ ໄມໂຄຣໂຟນ (Microphone)</label>
+                            <label><input type="radio" name="q6" value="d"> ງ. ຮາດດິສ (Hard Disk) ແລະ ແຟລັສໄດຣ໌ (Flash Drive)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="question">
+                        <p>7. ໃນລະບົບປະຕິບັດການ Windows, ຖ້າພວກເຮົາຕ້ອງການປິດເຄື່ອງຄອມພິວເຕີໃຫ້ຖືກຕ້ອງ ແລະ ປອດໄພ ຄວນຄລິກໄປທີ່ປຸ່ມໃດເປັນອັນດັບທຳອິດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> ກ. ປຸ່ມ Google Chrome</label>
+                            <label><input type="radio" name="q7" value="b"> ຂ. ປຸ່ມ Start (ຮູບໂລໂກ້ Windows ຢູ່ມຸມລຸ່ມຊ້າຍ)</label>
+                            <label><input type="radio" name="q7" value="c"> ຄ. ປຸ່ມ Recycle Bin (ຖັງຂີ້ເຫຍື້ອ)</label>
+                            <label><input type="radio" name="q7" value="d"> ງ. ປຸ່ມປິດໜ້າຕ່າງ (ເຄື່ອງໝາຍ X ສີແດງ)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="question" id="q8Container">
+                        <p>8. ການ "Save" (ບັນທຶກ) ແລະ "Save As" (ບັນທຶກເປັນ) ມີຄວາມແຕກຕ່າງກັນແນວໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> ກ. Save ແມ່ນການປິດເຄື່ອງ, Save As ແມ່ນການເປີດເຄື່ອງ.</label>
+                            <label><input type="radio" name="q8" value="b"> ຂ. Save ແມ່ນການບັນທຶກທັບວຽກເກົ່າ, Save As ແມ່ນການບັນທຶກເປັນໄຟລ໌ໃໝ່ ຫຼື ປ່ຽນຊື່ໃໝ່.</label>
+                            <label><input type="radio" name="q8" value="c"> ຄ. Save ແມ່ນການລຶບຂໍ້ມູນ, Save As ແມ່ນການກັອບປີ້ຂໍ້ມູນ.</label>
+                            <label><input type="radio" name="q8" value="d"> ງ. ບໍ່ມີຄວາມແຕກຕ່າງກັນ, ໃຊ້ແບບໃດກໍໄດ້.</label>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="question">
+                        <p>9. ພວກເຮົາຄວນກິນນ້ຳ ຫຼື ອາຫານ ຢູ່ໃກ້ກັບເຄື່ອງຄອມພິວເຕີ ຫຼື ບໍ່? ເພາະເຫດໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> ກ. ໄດ້, ເພາະຈະເຮັດໃຫ້ເຮົາຮຽນໄປດ້ວຍ ແລະ ກິນອີ່ມໄປດ້ວຍ.</label>
+                            <label><input type="radio" name="q9" value="b"> ຂ. ບໍ່ຄວນ, ເພາະເສດອາຫານ ຫຼື ນ້ຳ ອາດຈະເຮ່ຍໃສ່ ເຮັດໃຫ້ອຸປະກອນເປ່ເພ ຫຼື ໄຟຟ້າຊັອດໄດ້.</label>
+                            <label><input type="radio" name="q9" value="c"> ຄ. ໄດ້, ຖ້າເຮົາກິນຢ່າງລະມັດລະວັງ ແມ່ນບໍ່ມີບັນຫາຫຍັງ.</label>
+                            <label><input type="radio" name="q9" value="d"> ງ. ບໍ່ຄວນ, ເພາະຈະເຮັດໃຫ້ຄອມພິວເຕີຢາກກິນນຳເຮົາ.</label>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="question">
+                        <p>10. "Folder" (ໂຟນເດີຣ໌) ທີ່ມີສັນຍາລັກເປັນຮູບ "ແຟ້ມສີເຫຼືອງ" ມີໄວ້ເພື່ອຫຍັງ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> ກ. ມີໄວ້ເພື່ອລະບາຍສີຮູບພາບໃຫ້ສວຍງາມ.</label>
+                            <label><input type="radio" name="q10" value="b"> ຂ. ມີໄວ້ເພື່ອໃຊ້ພິມຕົວໜັງສື ແລະ ສົ່ງຈົດໝາຍ.</label>
+                            <label><input type="radio" name="q10" value="c"> ຄ. ມີໄວ້ເພື່ອຈັດເກັບໄຟລ໌ຂໍ້ມູນຕ່າງໆ ໃຫ້ເປັນໝວດໝູ່ ແລະ ຊອກຫາງ່າຍ.</label>
+                            <label><input type="radio" name="q10" value="d"> ງ. ມີໄວ້ເພື່ອເຊື່ອມຕໍ່ອິນເຕີເນັດ.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">ກັບຄືນ</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">ຕໍ່ໄປ</button>
+                <button type="button" id="submitBtn" class="submit-btn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+            </div>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
