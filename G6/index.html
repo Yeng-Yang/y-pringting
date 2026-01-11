@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ມັດທະຍົມຊັ້ນ ມ1</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.jpeg" alt="Logo" class="logo">
+            <h1>ບົດສອບເສັງ ມັດທະຍົມຊັ້ນ ມ1</h1>
+            <h2>ວິຊາ: ຄອມພິວເຕີພື້ນຖານ</h2>
+        </header>
+
+        <table class="header-table">
+            <tr>
+                <td style="width: 40%;">ຊື່ ແລະ ນາມສະກຸນ: <input type="text" id="studentName" placeholder="ພິມຊື່ນັກຮຽນໃສ່ບ່ອນນີ້..."></td>
+                <td style="width: 20%;">ຄະແນນ:<br><span id="scoreDisplay">...</span>/10</td>
+                <td style="width: 40%;">ຄຳເຫັນຂອງຄູ:<br><span id="teacherComment">...</span></td>
+            </tr>
+        </table>
+
+        <form id="quizForm">
+            <!-- Step 1: Q1-Q3 -->
+            <div class="step active">
+                <div class="section-title">ພາກທິດສະດີ (7 ຄະແນນ)</div>
+                <div class="question-grid">
+                    <!-- Q1 -->
+                    <div class="question">
+                        <p>1. ອຸປະກອນໃດທີ່ເຮັດໜ້າທີ່ເປັນ "ສະໝອງ" ຂອງຄອມພິວເຕີ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> ກ. CPU</label>
+                            <label><input type="radio" name="q1" value="b"> ຂ. Software</label>
+                            <label><input type="radio" name="q1" value="c"> ຄ. HardWare</label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="question">
+                        <p>2. CPU ຫຍໍ້ມາຈາກໃສ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> ກ. Computer</label>
+                            <label><input type="radio" name="q2" value="b"> ຂ. Computer Processing Unit</label>
+                            <label><input type="radio" name="q2" value="c"> ຄ. Central Processing Unit</label>
+                            <label><input type="radio" name="q2" value="d"> ງ. Control Processing Unit</label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="question">
+                        <p>3. ຂໍ້ໃດແມ່ນລະບົບປະຕິບັດການ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> ກ. Microsoft Word, Excel, PowerPoint</label>
+                            <label><input type="radio" name="q3" value="b"> ຂ. Google Chrome, Safari, Firefox</label>
+                            <label><input type="radio" name="q3" value="c"> ຄ. Windows 11, macOS, Linux</label>
+                            <label><input type="radio" name="q3" value="d"> ງ. Keyboard, Mouse, Monitor</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Q4-Q6 -->
+            <div class="step">
+                <div class="question-grid">
+                    <!-- Q4 -->
+                    <div class="question">
+                        <p>4. ໃນ Microsoft Word, ປຸ່ມລັດ (Shortcut) ໃດໃຊ້ສຳລັບການ "ວາງ" (Paste)?</p>
+                        <div class="options">
+                            Ctrl + <input type="text" name="q4" style="width: 50px; text-align: center;">
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="question">
+                        <p>5. ໂປຣແກຣມ Microsoft Word ເໝາະສົມສຳລັບການເຮັດວຽກປະເພດໃດຫຼາຍທີ່ສຸດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> ກ. ການຄຳນວນຕົວເລກ ແລະ ຈັດການບັນຊີທີ່ຊັບຊ້ອນ</label>
+                            <label><input type="radio" name="q5" value="b"> ຂ. ການສ້າງ, ແກ້ໄຂ ແລະ ຈັດຮູບແບບເອກະສານທີ່ເປັນຕົວໜັງສື</label>
+                            <label><input type="radio" name="q5" value="c"> ຄ. ການອອກແບບຖານຂໍ້ມູນ ແລະ ຂຽນໂປຣແກຣມ</label>
+                            <label><input type="radio" name="q5" value="d"> ງ. ການຕັດຕໍ່ວິດີໂອ ແລະ ສ້າງພາບເຄື່ອນໄຫວ</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Q7-Q9 -->
+            <div class="step">
+                <div class="question-grid">
+                    <!-- Q6 -->
+                    <div class="question">
+                        <p>6. ໃນການນຳໃຊ້ Microsoft Word, ຫາກທ່ານຕ້ອງການປ່ຽນຂໍ້ຄວາມທີ່ເລືອກໃຫ້ເປັນ "ຕົວໜາ" (Bold), ທ່ານຕ້ອງປະຕິບັດແນວໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> ກ. ກົດປຸ່ມລັດ Ctrl + I ເທິງຄີບອດ</label>
+                            <label><input type="radio" name="q6" value="b"> ຂ. ກົດທີ່ສັນຍະລັກ B ຢູ່ແຖບເຄື່ອງມື Home</label>
+                            <label><input type="radio" name="q6" value="c"> ຄ. ກົດປຸ່ມລັດ Ctrl + U ເທິງຄີບອດ</label>
+                            <label><input type="radio" name="q6" value="d"> ງ. ກົດທີ່ສັນຍະລັກ A ຢູ່ແຖບເຄື່ອງມື Home</label>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="question">
+                        <p>7. ໃນ Microsoft Excel, ຫ້ອງ Cell ທີ່ເກີດຈາກຖັນ D ແລະ ແຖວທີ 5 ຕັດກັນ ເອີ້ນວ່າແນວໃດ?</p>
+                        <div class="options">
+                            ຄຳຕອບ: <input type="text" name="q7" style="width: 100px;">
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="question" id="q8Container">
+                        <p>8. ຈົ່ງຂຽນສູດຄິດໄລ່ຂອງ Column A Rows 5 ລົບ Column D Rows 5</p>
+                        <div class="options">
+                            ຄຳຕອບ: <input type="text" name="q8" style="width: 150px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Q10-Q11 -->
+            <div class="step">
+                <div class="question-grid">
+                    <!-- Q9 -->
+                    <div class="question">
+                        <p>9. ໃນການນຳໃຊ້ Microsoft Excel, ທຸກໆຄັ້ງທີ່ຈະເລີ່ມຕົ້ນປ້ອນສູດຄິດໄລ່ ຫຼື ຟັງຊັນຕ່າງໆ ຕ້ອງໃສ່ເຄື່ອງໝາຍໃດເປັນອັນດັບທຳອິດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> ກ. ເຄື່ອງໝາຍບວກ ( + )</label>
+                            <label><input type="radio" name="q9" value="b"> ຂ. ເຄື່ອງໝາຍດອກຈັນ ( * )</label>
+                            <label><input type="radio" name="q9" value="c"> ຄ. ເຄື່ອງໝາຍເທົ່າກັບ ( = )</label>
+                            <label><input type="radio" name="q9" value="d"> ງ. ເຄື່ອງໝາຍທັບ ( / )</label>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="question">
+                        <p>10. ຈົ່ງຂຽນສູດການຫາຜົນລວມ (SUM) ຂອງ Cell A1 ຫາ A10 ໃນ Excel?</p>
+                        <div class="options">
+                            ຄຳຕອບ: <input type="text" name="q10" style="width: 200px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Typing -->
+            <div class="step">
+                <div class="section-title">ພາກພິມດີດ (Typing) (3 ຄະແນນ)</div>
+                
+                <!-- Q11 -->
+                <div class="question">
+                    <p>11. ຈົ່ງຂຽນຂໍ້ຄວາມນີ້ໃຫ້ຖືກຕ້ອງໃສ່ຫ້ອງ typing (ພາສາລາວ).</p>
+                    <div id="q11Target" class="noselect" style="background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 10px; font-size: 20px; line-height: 1.6;"></div>
+                    <textarea id="q11Input" name="q11" rows="8" style="width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Noto Sans Lao', sans-serif; font-size: 20px; line-height: 1.6;" placeholder="ພິມຂໍ້ຄວາມຂ້າງເທິງໃສ່ບ່ອນນີ້..." onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off"></textarea>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p>12. ຈົ່ງຂຽນຂໍ້ຄວາມນີ້ໃຫ້ຖືກຕ້ອງໃສ່ຫ້ອງ typing (ພາສາອັງກິດ).</p>
+                    <div id="q12Target" class="noselect" style="background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 10px; font-size: 20px; line-height: 1.6;"></div>
+                    <textarea id="q12Input" name="q12" rows="8" style="width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Noto Sans Lao', sans-serif; font-size: 20px; line-height: 1.6;" placeholder="Type the text above here..." onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off"></textarea>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">ກັບຄືນ</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">ຕໍ່ໄປ</button>
+                <button type="button" id="submitBtn" class="submit-btn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+            </div>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
