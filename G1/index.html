@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ຊັ້ນປະຖົມສຶກສາປີ 1</title>
+    <!-- ນຳໃຊ້ Font Noto Sans Lao ສຳລັບພາສາລາວ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ເຊື່ອມຕໍ່ໄຟລ໌ CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Library ສຳລັບສ້າງ PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <!-- ໃສ່ຮູບໂລໂກ້ບ່ອນນີ້ (ປ່ຽນ logo.png ເປັນຊື່ໄຟລ໌ຮູບຂອງທ່ານ) -->
+        <img src="logo.jpeg" alt="Logo" style="width: 100%; height: 3cm; object-fit: fill; margin-bottom: 10px;">
+        <h1>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ພາກຮຽນທີ I ປີ 2025-2026</h1>
+        <h2>ຊັ້ນປະຖົມສຶກສາປີ 1</h2>
+    </header>
+
+    <table class="header-table">
+        <tr>
+            <td width="50%">ຊື່ ແລະ ນາມສະກຸນ:<br><input type="text" id="studentName" placeholder="..."></td>
+            <td width="20%" align="center">ຄະແນນ<br><span id="scoreDisplay" style="font-size: 18px; font-weight: bold; color: red;"></span></td>
+            <td width="30%">ຄຳເຫັນຂອງຄູ:<br><span id="teacherComment" style="color: blue; font-weight: bold;"></span></td>
+        </tr>
+    </table>
+
+    <form id="quizForm">
+        <!-- ພາກທີ 1 -->
+        <div class="section-title"> ພາກທີ 1: ຄວາມຮູ້ພື້ນຖານກ່ຽວກັບຄອມພິວເຕີ</div>
+        <p style="margin: 10px 0;">ຄຳສັ່ງ: ຈົ່ງໝາຍວົງມົນອ້ອມຄຳຕອບທີ່ຖືກຕ້ອງທີ່ສຸດພຽງຂໍ້ດຽວ</p>
+
+        <div class="question-grid">
+        <div class="question">
+            <p>1. ອຸປະກອນໃດທີ່ເບິ່ງຄື "ໜ້າຈໍ TV"?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> ກ. 🖥️ (ຈໍພາບ)</label>
+                <label><input type="radio" name="q1" value="b"> ຂ. 🖱️ (ເມົ້າ)</label>
+                <label><input type="radio" name="q1" value="c"> ຄ. ⌨️ (ແປ້ນພິມ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>2. ເຮົາໃຊ້ຫຍັງໃນການ "ຄລິກ" ເພື່ອເລືອກສິ່ງຕ່າງໆ?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> ກ. 🖱️ (ເມົ້າ)</label>
+                <label><input type="radio" name="q2" value="b"> ຂ. ⌨️ (ແປ້ນພິມ)</label>
+                <label><input type="radio" name="q2" value="c"> ຄ. 🖥️ (ຈໍພາບ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>3. ເຮົາໃຊ້ຫຍັງເພື່ອພິມຕົວເລກ 1 2 3?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="a"> ກ. ⌨️ (ແປ້ນພິມ)</label>
+                <label><input type="radio" name="q3" value="b"> ຂ. 🖱️ (ເມົ້າ)</label>
+                <label><input type="radio" name="q3" value="c"> ຄ. 🖥️ (ຈໍພາບ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>4. ຄອມພິວເຕີແມ່ນເຄື່ອງມືທີ່ຊ່ວຍໃຫ້ເຮົາເຮັດຫຍັງ?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="a"> ກ. 📚 ຮຽນໜັງສື, 🎨 ແຕ້ມຮູບ ແລະ 🎵 ຟັງເພງ</label>
+                <label><input type="radio" name="q4" value="b"> ຂ. 🍚 ກິນເຂົ້າ ແລະ 🥤 ດື່ມນ້ຳ</label>
+                <label><input type="radio" name="q4" value="c"> ຄ. 🚿 ອາບນ້ຳ ແລະ 👕 ນຸ່ງເຄື່ອງ</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>5. ໃນໂປຣແກຣມ Microsoft Paint, ຖ້າຢາກແຕ້ມຮູບດ້ວຍມືເຮົາເອງ ຕ້ອງເລືອກເຄື່ອງມືໃດ?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="a"> ກ. ✏️ (ສໍ)</label>
+                <label><input type="radio" name="q5" value="b"> ຂ. 🧽 (ຢາງລຶບ)</label>
+                <label><input type="radio" name="q5" value="c"> ຄ. 🪣 (ຖັງສີ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>6. ຖ້າຢາກແຕ້ມຮູບ "ວົງມົນ" ໃນ Paint ຕ້ອງໄປທີ່ເມນູໃດ?</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="a"> ກ. Shapes (ຮູບຮ່າງ) ⬜⭕</label>
+                <label><input type="radio" name="q6" value="b"> ຂ. Colors (ສີ) 🎨</label>
+                <label><input type="radio" name="q6" value="c"> ຄ. Brushes (ແປງ) 🖌️</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>7. ລູກສອນສີຂາວທີ່ເຄື່ອນທີ່ໄປມາໃນໜ້າຈໍເອີ້ນວ່າຫຍັງ?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="a"> ກ. ↖️ (Cursor/ລູກສອນເມົ້າ)</label>
+                <label><input type="radio" name="q7" value="b"> ຂ. 🖼️ (Icon/ຮູບພາບ)</label>
+                <label><input type="radio" name="q7" value="c"> ຄ. ⌨️ (Keyboard/ແປ້ນພິມ)</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>8. ວິທີປິດເຄື່ອງທີ່ຖືກຕ້ອງ ຕ້ອງກົດປຸ່ມໃດໃນໜ້າຈໍ?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="a"> ກ. ⊞ (Start) -> ⏻ (Power) -> Shut down</label>
+                <label><input type="radio" name="q8" value="b"> ຂ. 🔌 (ດຶງປັກສຽບອອກເລີຍ)</label>
+                <label><input type="radio" name="q8" value="c"> ຄ. 🔘 (ກົດປຸ່ມປິດຢູ່ໜ້າຈໍ)</label>
+            </div>
+        </div>
+
+        <div class="question" style="page-break-before: always;">
+            <p>9. ຈົ່ງພິມຕົວອັກສອນພາສາອັງກິດ A ຫາ Z (A-Z)</p>
+            <p style="font-size: 18px; font-weight: bold; color: blue; letter-spacing: 3px; margin: 5px 0;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <input type="text" name="q9" placeholder="A B C ... Z" style="width: 100%; padding: 10px; font-size: 16px; margin-top: 5px;">
+        </div>
+
+        <div class="question" style="grid-column: 1 / -1;">
+            <p>10. ຈົ່ງລະບາຍສີໃສ່ຮູບພາບ "ໂຮງຮຽນ" ຕາມໝາຍເລກທີ່ກຳນົດໃຫ້</p>
+            <div style="text-align: center; margin: 15px 0;">
+                
+                <!-- ແຖບເລືອກສີ -->
+                <div style="margin-bottom: 10px; background: #f0f0f0; padding: 10px; border-radius: 10px;">
+                    <span style="font-weight:bold; margin-right: 5px;">ເລືອກສີ: </span>
+                    <button type="button" onclick="setPaintColor('#FFFF00')" style="width:30px; height:30px; background:yellow; border:2px solid #fff; border-radius:50%; cursor:pointer; box-shadow: 0 2px 2px rgba(0,0,0,0.2); font-weight:bold; color:black;">1</button>
+                    <button type="button" onclick="setPaintColor('#0000FF')" style="width:30px; height:30px; background:blue; border:2px solid #fff; border-radius:50%; cursor:pointer; box-shadow: 0 2px 2px rgba(0,0,0,0.2); font-weight:bold; color:white;">2</button>
+                    <button type="button" onclick="setPaintColor('#FF0000')" style="width:30px; height:30px; background:red; border:2px solid #fff; border-radius:50%; cursor:pointer; box-shadow: 0 2px 2px rgba(0,0,0,0.2); font-weight:bold; color:white;">3</button>
+                    <button type="button" onclick="setPaintColor('#FFA500')" style="width:30px; height:30px; background:orange; border:2px solid #fff; border-radius:50%; cursor:pointer; box-shadow: 0 2px 2px rgba(0,0,0,0.2); font-weight:bold; color:black;">4</button>
+                    <button type="button" onclick="setPaintColor('#8B4513')" style="width:30px; height:30px; background:saddlebrown; border:2px solid #fff; border-radius:50%; cursor:pointer; box-shadow: 0 2px 2px rgba(0,0,0,0.2); font-weight:bold; color:white;">5</button>
+                    <button type="button" onclick="setPaintColor('#008000')" style="width:30px; height:30px; background:green; border:2px solid #fff; border-radius:50%; cursor:pointer; box-shadow: 0 2px 2px rgba(0,0,0,0.2); font-weight:bold; color:white;">6</button>
+                    <button type="button" onclick="setPaintColor('#FFFFFF')" style="width:30px; height:30px; background:white; border:1px solid #ccc; border-radius:50%; cursor:pointer; margin-left: 10px;">ລຶບ</button>
+                    <span id="currentColorDisplay" style="margin-left:10px; padding: 5px 10px; border-radius: 5px; border: 1px solid #ccc; background: white;">ຍັງບໍ່ໄດ້ເລືອກສີ</span>
+                </div>
+
+                <!-- ຮູບພາບຈຳລອງສຳລັບລະບາຍສີ -->
+                <svg viewBox="0 0 400 250" style="border: 2px solid #333; background-color: #fff; max-width: 100%; height: auto; border-radius: 10px; cursor: crosshair;">
+                    <!-- Sky -->
+                    <rect id="sky" x="0" y="0" width="400" height="250" fill="#e0f7fa" onclick="paintArea(this)" />
+                    <text x="360" y="30" font-size="20" fill="#000" style="pointer-events: none;">2</text>
+                    <!-- Clouds -->
+                    <path d="M180 40 Q195 25 210 40 Q225 25 240 40 Q255 55 240 70 Q225 80 210 70 Q195 80 180 70 Q165 55 180 40" fill="white" stroke="#ccc" stroke-width="1" />
+                    <path d="M280 25 Q290 15 300 25 Q310 15 320 25 Q330 35 320 45 Q310 55 300 45 Q290 55 280 45 Q270 35 280 25" fill="white" stroke="#ccc" stroke-width="1" />
+                    <!-- Mountains -->
+                    <path id="mountain1" d="M-50 200 L100 60 L250 200 Z" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="80" y="130" font-size="20" fill="#ccc" style="pointer-events: none;">6</text>
+                    <path id="mountain2" d="M150 200 L300 50 L450 200 Z" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="320" y="120" font-size="20" fill="#ccc" style="pointer-events: none;">6</text>
+                    <!-- Ground -->
+                    <rect id="ground" x="0" y="200" width="400" height="50" fill="#c8e6c9" onclick="paintArea(this)" />
+                    <text x="30" y="230" font-size="20" fill="#555" style="pointer-events: none; opacity: 0.5;">6</text>
+                    
+                    <!-- School Building -->
+                    <rect id="school_wall" x="100" y="100" width="200" height="100" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="140" y="190" font-size="20" fill="#999" style="pointer-events: none;">4</text>
+                    <!-- Roof -->
+                    <path id="roof" d="M80 100 L200 40 L320 100 Z" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="200" y="85" font-size="20" fill="#ccc" style="pointer-events: none;">3</text>
+                    <!-- Door -->
+                    <rect id="door" x="180" y="140" width="40" height="60" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="200" y="175" font-size="16" fill="#ccc" style="pointer-events: none;">5</text>
+                    <!-- Windows -->
+                    <rect id="window1" x="120" y="120" width="40" height="40" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="140" y="145" font-size="14" fill="#ccc" style="pointer-events: none;">2</text>
+                    <rect id="window2" x="240" y="120" width="40" height="40" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="260" y="145" font-size="14" fill="#ccc" style="pointer-events: none;">2</text>
+                    
+                    <!-- Flag Pole -->
+                    <line x1="350" y1="200" x2="350" y2="50" stroke="black" stroke-width="3" />
+                    <!-- Flag (Lao Flag) -->
+                    <!-- Top Stripe (Red=3) -->
+                    <rect id="flag_top" x="350" y="50" width="60" height="12" fill="white" stroke="black" stroke-width="1" onclick="paintArea(this)" />
+                    <text x="400" y="60" font-size="10" fill="#ccc" style="pointer-events: none;">3</text>
+                    <!-- Middle Stripe (Blue=2) -->
+                    <rect id="flag_mid" x="350" y="62" width="60" height="24" fill="white" stroke="black" stroke-width="1" onclick="paintArea(this)" />
+                    <text x="355" y="78" font-size="10" fill="#ccc" style="pointer-events: none;">2</text>
+                    <!-- Bottom Stripe (Red=3) -->
+                    <rect id="flag_bot" x="350" y="86" width="60" height="12" fill="white" stroke="black" stroke-width="1" onclick="paintArea(this)" />
+                    <text x="400" y="96" font-size="10" fill="#ccc" style="pointer-events: none;">3</text>
+                    <!-- Circle (White) -->
+                    <circle cx="380" cy="74" r="9" fill="white" stroke="black" stroke-width="1" onclick="paintArea(this)" />
+                    
+                    <!-- Sun -->
+                    <g stroke="black" stroke-width="2">
+                        <line x1="50" y1="15" x2="50" y2="5" />
+                        <line x1="50" y1="85" x2="50" y2="95" />
+                        <line x1="15" y1="50" x2="5" y2="50" />
+                        <line x1="85" y1="50" x2="95" y2="50" />
+                        <line x1="25" y1="25" x2="18" y2="18" />
+                        <line x1="75" y1="25" x2="82" y2="18" />
+                        <line x1="25" y1="75" x2="18" y2="82" />
+                        <line x1="75" y1="75" x2="82" y2="82" />
+                    </g>
+                    <circle id="sun" cx="50" cy="50" r="30" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="50" y="58" font-size="20" text-anchor="middle" fill="#ccc" style="pointer-events: none;">1</text>
+                    
+                    <!-- Birds -->
+                    <path d="M260 25 Q270 15 280 25 Q290 15 300 25" fill="none" stroke="black" stroke-width="2" />
+                    <path d="M310 40 Q320 30 330 40 Q340 30 350 40" fill="none" stroke="black" stroke-width="2" />
+                    
+                    <!-- Tree -->
+                    <!-- Trunk (Brown=5) -->
+                    <rect id="tree_trunk" x="40" y="160" width="20" height="40" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="45" y="185" font-size="12" fill="#ccc" style="pointer-events: none;">5</text>
+                    <!-- Leaves (Green=6) -->
+                    <circle id="tree_leaves" cx="50" cy="140" r="30" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="45" y="145" font-size="16" fill="#ccc" style="pointer-events: none;">6</text>
+                    
+                    <!-- Flowers -->
+                    <!-- Flower Left (Red=3) -->
+                    <line x1="110" y1="200" x2="110" y2="185" stroke="black" stroke-width="2" />
+                    <circle id="flower_left" cx="110" cy="180" r="8" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="107" y="184" font-size="10" fill="#ccc" style="pointer-events: none;">3</text>
+                    <!-- Flower Right (Orange=4) -->
+                    <line x1="290" y1="200" x2="290" y2="185" stroke="black" stroke-width="2" />
+                    <circle id="flower_right" cx="290" cy="180" r="8" fill="white" stroke="black" stroke-width="2" onclick="paintArea(this)" />
+                    <text x="287" y="184" font-size="10" fill="#ccc" style="pointer-events: none;">4</text>
+                    
+                    <!-- Sign -->
+                    <rect id="sign" x="150" y="110" width="100" height="20" fill="white" stroke="black" onclick="paintArea(this)" />
+                    <text x="200" y="125" font-size="10" text-anchor="middle" fill="black" style="pointer-events: none;">ໂຮງຮຽນ</text>
+                    <text x="240" y="125" font-size="10" fill="#999" style="pointer-events: none;">5</text>
+                </svg>
+            </div>
+        </div>
+
+        </div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+    </form>
+
+</div>
+<div id="result"></div>
+
+<!-- ເຊື່ອມຕໍ່ໄຟລ໌ JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>

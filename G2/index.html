@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ຊັ້ນປະຖົມປີທີ 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo.jpeg" alt="Logo" class="logo">
+            <h1>ບົດສອບເສັງ ຊັ້ນປະຖົມປີທີ 2 (Grade 2)</h1>
+            <h2>ວິຊາ: ໄອຊີທີ (ICT)</h2>
+        </header>
+
+        <table class="header-table">
+            <tr>
+                <td style="width: 40%;">ຊື່ ແລະ ນາມສະກຸນ: <input type="text" id="studentName" placeholder="ພິມຊື່ນັກຮຽນໃສ່ບ່ອນນີ້..."></td>
+                <td style="width: 20%;">ຄະແນນ:<br><span id="scoreDisplay">...</span>/10</td>
+                <td style="width: 40%;">ຄຳເຫັນຂອງຄູ:<br><span id="teacherComment">...</span></td>
+            </tr>
+        </table>
+
+        <form id="quizForm">
+            <!-- Step 1: Q1-Q5 -->
+            <div class="step active">
+                <div class="section-title">ພາກປາລະໄນ (ທິດສະດີ) - ໜ້າທີ 1</div>
+                <div class="question-grid">
+                    <!-- Q1 -->
+                    <div class="question">
+                        <p>1. ອຸປະກອນໃດທີ່ເຮັດໜ້າທີ່ປະມວນຜົນຂໍ້ມູນ (ປຽບຄືສະໝອງຂອງຄອມ)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> ກ. ຈໍພາບ (Monitor)</label>
+                            <label><input type="radio" name="q1" value="b"> ຂ. ເຄສ ຫຼື ຊີພີຢູ (Case / CPU)</label>
+                            <label><input type="radio" name="q1" value="c"> ຄ. ເມົາສ໌ (Mouse)</label>
+                            <label><input type="radio" name="q1" value="d"> ງ. ຄີບອດ (Keyboard)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="question">
+                        <p>2. ຮູບພາບນ້ອຍໆ ທີ່ສະແດງຢູ່ເທິງໜ້າຈໍ Desktop ເອີ້ນວ່າຫຍັງ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> ກ. ເມົາສ໌ (Mouse)</label>
+                            <label><input type="radio" name="q2" value="b"> ຂ. ໄອຄອນ (Icon)</label>
+                            <label><input type="radio" name="q2" value="c"> ຄ. ຄີບອດ (Keyboard)</label>
+                            <label><input type="radio" name="q2" value="d"> ງ. ປັກໄຟ (Plug)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="question">
+                        <p>3. ໂປຣແກຣມ MS Word (ທີ່ໃຊ້ສຳລັບພິມເອກະສານ) ມີສັນຍາລັກເປັນຕົວອັກສອນໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> ກ. ຕົວ A</label>
+                            <label><input type="radio" name="q3" value="b"> ຂ. ຕົວ W</label>
+                            <label><input type="radio" name="q3" value="c"> ຄ. ຕົວ X</label>
+                            <label><input type="radio" name="q3" value="d"> ງ. ຕົວ P</label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="question">
+                        <p>4. ການນັ່ງໃຊ້ຄອມພິວເຕີເປັນເວລາດົນເກີນໄປ ໂດຍບໍ່ພັກຜ່ອນ ຈະສົ່ງຜົນເສຍຕໍ່ຫຍັງຫຼາຍທີ່ສຸດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> ກ. ເຮັດໃຫ້ຮຽນເກັ່ງຂຶ້ນ</label>
+                            <label><input type="radio" name="q4" value="b"> ຂ. ສາຍຕາ ແລະ ສຸຂະພາບ (ເຈັບຫຼັງ, ປວດບ່າໄຫຼ່)</label>
+                            <label><input type="radio" name="q4" value="c"> ຄ. ເຮັດໃຫ້ເມົາສ໌ ແລະ ຄີບອດງາມຂຶ້ນ</label>
+                            <label><input type="radio" name="q4" value="d"> ງ. ເຮັດໃຫ້ມີໝູ່ເພື່ອນຫຼາຍຂຶ້ນ</label>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="question">
+                        <p>5. ຖ້າຕ້ອງການແຊກຮູບພາບ (Insert Picture) ລົງໃນເອກະສານ MS Word ເຮົາຕ້ອງໄປທີ່ເມນູໃດ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> ກ. ເມນູ Home (ໜ້າທຳອິດ)</label>
+                            <label><input type="radio" name="q5" value="b"> ຂ. ເມນູ Insert (ແຊກ)</label>
+                            <label><input type="radio" name="q5" value="c"> ຄ. ເມນູ View (ມຸມມອງ)</label>
+                            <label><input type="radio" name="q5" value="d"> ງ. ເມນູ Help (ຊ່ວຍເຫຼືອ)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Q6-Q9 -->
+            <div class="step">
+                <div class="section-title">ພາກປາລະໄນ (ທິດສະດີ) - ໜ້າທີ 2</div>
+                <div class="question-grid">
+                    <!-- Q6 -->
+                    <div class="question">
+                        <p>6. ກ່ອນຈະປິດເຄື່ອງຄອມພິວເຕີ (Shut down), ເຮົາຄວນເຮັດແນວໃດກັບໂປຣແກຣມ ຫຼື ເອກະສານທີ່ເປີດຄ້າງໄວ້?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> ກ. ປ່ອຍໄວ້ຄືເກົ່າ ແລ້ວຖອດປັກໄຟທັນທີ</label>
+                            <label><input type="radio" name="q6" value="b"> ຂ. ປິດໜ້າຈໍພາບ (Monitor) ແລ້ວມືອ້ອມເລີຍ</label>
+                            <label><input type="radio" name="q6" value="c"> ຄ. ບັນທຶກວຽກ (Save) ແລະ ປິດໂປຣແກຣມທັງໝົດກ່ອນ</label>
+                            <label><input type="radio" name="q6" value="d"> ງ. ກົດປຸ່ມເປີດ-ປິດ (Power) ຢູ່ Case ຄ້າງໄວ້</label>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="question">
+                        <p>7. ເຄື່ອງມື "Brushes" (ແປງທາສີ) ໃນໂປຣແກຣມ MS Paint ມີໄວ້ເຮັດຫຍັງ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> ກ. ໃຊ້ສຳລັບລຶບຮູບພາບທີ່ແຕ້ມຜິດ</label>
+                            <label><input type="radio" name="q7" value="b"> ຂ. ໃຊ້ສຳລັບແຕ້ມ ຫຼື ລະບາຍສີ ທີ່ມີຫົວແປງຫຼາຍແບບໃຫ້ເລືອກ</label>
+                            <label><input type="radio" name="q7" value="c"> ຄ. ໃຊ້ສຳລັບພິມຕົວໜັງສືໃສ່ໃນຮູບ</label>
+                            <label><input type="radio" name="q7" value="d"> ງ. ໃຊ້ສຳລັບຂະຫຍາຍຮູບໃຫ້ໃຫຍ່ຂຶ້ນ (ຊູມ)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="question">
+                        <p>8. ໃນເວລາພິມຂໍ້ຄວາມ, ການກົດປຸ່ມ Shift (ຊິຟ) ຄ້າງໄວ້ ແມ່ນມີໄວ້ເພື່ອຫຍັງ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> ກ. ເພື່ອລຶບຕົວໜັງສືທີ່ພິມຜິດ</label>
+                            <label><input type="radio" name="q8" value="b"> ຂ. ເພື່ອພິມຕົວອັກສອນພາສາລາວ "ແຖວເທິງ" ຫຼື ຕົວພິມໃຫຍ່ໃນພາສາອັງກິດ</label>
+                            <label><input type="radio" name="q8" value="c"> ຄ. ເພື່ອປິດເຄື່ອງຄອມພິວເຕີທັນທີ</label>
+                            <label><input type="radio" name="q8" value="d"> ງ. ເພື່ອເຮັດໃຫ້ຕົວໜັງສືຍັບອອກຫ່າງກັນ (ຍ່າງວ່າງ)</label>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="question">
+                        <p>9. ເຄື່ອງມື "Brushes" (ແປງທາສີ) ໃນໂປຣແກຣມ MS Paint ມີໄວ້ເຮັດຫຍັງ?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> ກ. ໃຊ້ສຳລັບລຶບຮູບພາບທີ່ແຕ້ມຜິດ.</label>
+                            <label><input type="radio" name="q9" value="b"> ຂ. ໃຊ້ສຳລັບພິມຕົວໜັງສືໃສ່ໃນຮູບ.</label>
+                            <label><input type="radio" name="q9" value="c"> ຄ. ໃຊ້ສຳລັບແຕ້ມ ຫຼື ລະບາຍສີ ທີ່ມີຫົວແປງຫຼາຍແບບໃຫ້ເລືອກ.</label>
+                            <label><input type="radio" name="q9" value="d"> ງ. ໃຊ້ສຳລັບຂະຫຍາຍຮູບໃຫ້ໃຫຍ່ຂຶ້ນ (ຊູມ).</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Typing -->
+            <div class="step">
+                <div class="section-title">ພາກອັດຕະໄນ (ພາກປະຕິບັດຕົວຈິງ)</div>
+                
+                <!-- Q10 -->
+                <div class="question">
+                    <p>10. ຈົ່ງພິມຂໍ້ຄວາມລຸ່ມນີ້ໃສ່ບ່ອນພິມໃຫ້ຖືກຕ້ອງ.</p>
+                    <div id="q10Target" class="noselect" style="background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 10px; font-size: 20px; line-height: 1.6;"></div>
+                    <textarea id="q10Input" name="q10" rows="4" style="width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Noto Sans Lao', sans-serif; font-size: 20px; line-height: 1.6;" placeholder="ພິມຂໍ້ຄວາມຢູ່ທີ່ນີ້..." onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off"></textarea>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">ກັບຄືນ</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">ຕໍ່ໄປ</button>
+                <button type="button" id="submitBtn" class="submit-btn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+            </div>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
