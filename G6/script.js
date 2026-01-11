@@ -262,7 +262,7 @@ function generateAndUploadPDF(studentName) {
     });
 
     const opt = {
-        margin: 4,
+        margin: 3,
         filename: studentName + '_exam.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, scrollY: 0, backgroundColor: '#ffffff' }, // ລົບ useCORS ອອກເພື່ອແກ້ບັນຫາ Tainted Canvas
@@ -271,7 +271,17 @@ function generateAndUploadPDF(studentName) {
 
     // ເພີ່ມເວລາລໍຖ້າ 1 ວິນາທີ ເພື່ອໃຫ້ Browser ກຽມໜ້າ clone ໃຫ້ພ້ອມກ່ອນຖ່າຍຮູບ
     setTimeout(() => {
-        html2pdf().set(opt).from(clone).outputPdf('blob').then((blob) => {
+        const worker = html2pdf().set(opt).from(clone).toPdf();
+        
+        worker.get('pdf').then(function (pdf) {
+            const totalPages = pdf.internal.getNumberOfPages();
+            for (let i = 1; i <= totalPages; i++) {
+                pdf.setPage(i);
+                pdf.setFontSize(10);
+                pdf.setTextColor(150);
+                pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+            }
+        }).then(() => { return worker.output('blob'); }).then((blob) => {
             // ລຶບ Overlay ອອກເມື່ອສ້າງແລ້ວ
             document.body.removeChild(pdfOverlay);
             
@@ -289,7 +299,16 @@ function generateAndUploadPDF(studentName) {
             const logoImg = clone.querySelector('.logo');
             if (logoImg) logoImg.remove();
 
-            html2pdf().set(opt).from(clone).outputPdf('blob').then((blob) => {
+            const retryWorker = html2pdf().set(opt).from(clone).toPdf();
+            retryWorker.get('pdf').then(function (pdf) {
+                const totalPages = pdf.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                    pdf.setPage(i);
+                    pdf.setFontSize(10);
+                    pdf.setTextColor(150);
+                    pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+                }
+            }).then(() => { return retryWorker.output('blob'); }).then((blob) => {
                 document.body.removeChild(pdfOverlay);
                 if (!navigator.onLine) {
                     document.getElementById('result').innerHTML += "<p style='color:red; font-weight:bold; font-size: 18px;'>❌ ບໍ່ມີສັນຍານອິນເຕີເນັດ! ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ແລ້ວລອງໃໝ່.</p>";

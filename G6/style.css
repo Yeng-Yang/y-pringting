@@ -47,6 +47,15 @@ h2 {
     vertical-align: middle;
     font-size: 16px;
 }
+/* ຈັດໃຫ້ຫ້ອງຄະແນນ ແລະ ຄຳເຫັນຢູ່ເຄິ່ງກາງ */
+.header-table td:nth-child(2),
+.header-table td:nth-child(3) {
+    text-align: center;
+}
+#scoreDisplay, #teacherComment {
+    color: #007bff; /* ສີຟ້າ */
+    font-weight: bold;
+}
 .header-table input[type="text"] {
     width: 90%;
     padding: 5px;
@@ -176,8 +185,8 @@ button.submit-btn:hover {
 }
 .pdf-mode .question-grid { display: block; }
 .pdf-mode .question { 
-    margin-bottom: 10px; 
-    padding: 10px; 
+    margin-bottom: 5px !important; 
+    padding: 8px !important; 
     border: 1px solid #ccc; 
     border-radius: 4px;
     page-break-inside: avoid; 
@@ -187,16 +196,16 @@ button.submit-btn:hover {
 .pdf-mode .options label { display: flex; align-items: center; margin: 1px 0; font-size: 11px; padding: 1px; }
 .pdf-mode input[type="radio"] { transform: scale(1.2); margin-right: 5px; }
 .pdf-mode input[type="text"] { padding: 5px; font-size: 14px; }
-.pdf-mode .logo { display: block !important; width: 100%; height: 3cm; object-fit: contain; margin-bottom: 0; }
+.pdf-mode .logo { display: block !important; width: 100%; height: 2cm !important; object-fit: contain; margin-bottom: 0; }
 .pdf-mode .submit-btn { display: none !important; }
 .pdf-mode #result { display: none !important; }
 
 /* ປັບຂະໜາດພາກພິມດີດໃນ PDF */
 .pdf-mode #q11Target, .pdf-mode #q12Target {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
-    padding: 15px !important;
-    margin-bottom: 15px !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
     background-color: #f8f9fa !important;
     border: 1px solid #e9ecef !important;
     border-left: 4px solid #17a2b8 !important; /* ເພີ່ມເສັ້ນຂອບສີຟ້າທາງຊ້າຍໃຫ້ສວຍງາມ */
@@ -206,9 +215,9 @@ button.submit-btn:hover {
     word-break: break-word !important;
 }
 .pdf-mode textarea {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
-    padding: 15px !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    padding: 10px !important;
     height: auto !important;
     min-height: auto !important;
     border: 1px solid #ced4da !important;
