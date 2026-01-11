@@ -104,11 +104,15 @@ function checkAnswers() {
     }
 
     // Typing Section (q11, q12)
-    const q11Val = form.elements['q11'].value.trim();
-    const q12Val = form.elements['q12'] ? form.elements['q12'].value.trim() : "";
+    let q11Val = form.elements['q11'].value.trim();
+    let q12Val = form.elements['q12'] ? form.elements['q12'].value.trim() : "";
 
-    const sim11 = calculateSimilarity(q11Val, q11Text);
-    const sim12 = calculateSimilarity(q12Val, q12Text);
+    // Normalize whitespace (convert newlines/tabs to space, collapse multiple spaces)
+    q11Val = q11Val.replace(/\s+/g, ' ');
+    q12Val = q12Val.replace(/\s+/g, ' ');
+
+    const sim11 = calculateAccuracy(q11Val, q11Text);
+    const sim12 = calculateAccuracy(q12Val, q12Text);
 
     // Calculate Scores: Theory (7 pts) + Typing (3 pts)
     const theoryPoints = (theoryScore / totalTheoryQuestions) * 7;
@@ -230,11 +234,11 @@ function generateAndUploadPDF(studentName) {
 
     if (q11Src) {
         const el = clone.querySelector('[name="q11"]');
-        el.style.backgroundColor = calculateSimilarity(el.value.trim(), q11Text) > 0.8 ? '#d4edda' : '#f8d7da';
+        el.style.backgroundColor = calculateAccuracy(el.value.trim().replace(/\s+/g, ' '), q11Text) > 0.8 ? '#d4edda' : '#f8d7da';
     }
     if (q12Src) {
         const el = clone.querySelector('[name="q12"]');
-        el.style.backgroundColor = calculateSimilarity(el.value.trim(), q12Text) > 0.8 ? '#d4edda' : '#f8d7da';
+        el.style.backgroundColor = calculateAccuracy(el.value.trim().replace(/\s+/g, ' '), q12Text) > 0.8 ? '#d4edda' : '#f8d7da';
     }
 
     // 3. ສ້າງ Overlay Container (ແກ້ໄຂບັນຫາໜ້າຂາວ)
@@ -262,7 +266,7 @@ function generateAndUploadPDF(studentName) {
     });
 
     const opt = {
-        margin: 3,
+        margin: 4,
         filename: studentName + '_exam.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, scrollY: 0, backgroundColor: '#ffffff' }, // ລົບ useCORS ອອກເພື່ອແກ້ບັນຫາ Tainted Canvas
@@ -271,17 +275,7 @@ function generateAndUploadPDF(studentName) {
 
     // ເພີ່ມເວລາລໍຖ້າ 1 ວິນາທີ ເພື່ອໃຫ້ Browser ກຽມໜ້າ clone ໃຫ້ພ້ອມກ່ອນຖ່າຍຮູບ
     setTimeout(() => {
-        const worker = html2pdf().set(opt).from(clone).toPdf();
-        
-        worker.get('pdf').then(function (pdf) {
-            const totalPages = pdf.internal.getNumberOfPages();
-            for (let i = 1; i <= totalPages; i++) {
-                pdf.setPage(i);
-                pdf.setFontSize(10);
-                pdf.setTextColor(150);
-                pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
-            }
-        }).then(() => { return worker.output('blob'); }).then((blob) => {
+        html2pdf().set(opt).from(clone).outputPdf('blob').then((blob) => {
             // ລຶບ Overlay ອອກເມື່ອສ້າງແລ້ວ
             document.body.removeChild(pdfOverlay);
             
@@ -299,16 +293,7 @@ function generateAndUploadPDF(studentName) {
             const logoImg = clone.querySelector('.logo');
             if (logoImg) logoImg.remove();
 
-            const retryWorker = html2pdf().set(opt).from(clone).toPdf();
-            retryWorker.get('pdf').then(function (pdf) {
-                const totalPages = pdf.internal.getNumberOfPages();
-                for (let i = 1; i <= totalPages; i++) {
-                    pdf.setPage(i);
-                    pdf.setFontSize(10);
-                    pdf.setTextColor(150);
-                    pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
-                }
-            }).then(() => { return retryWorker.output('blob'); }).then((blob) => {
+            html2pdf().set(opt).from(clone).outputPdf('blob').then((blob) => {
                 document.body.removeChild(pdfOverlay);
                 if (!navigator.onLine) {
                     document.getElementById('result').innerHTML += "<p style='color:red; font-weight:bold; font-size: 18px;'>❌ ບໍ່ມີສັນຍານອິນເຕີເນັດ! ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ແລ້ວລອງໃໝ່.</p>";
@@ -390,34 +375,12 @@ function uploadToGoogleDrive(blob, studentName) {
     };
 }
 
-function calculateSimilarity(s1, s2) {
-    let longer = s1;
-    let shorter = s2;
-    if (s1.length < s2.length) {
-        longer = s2;
-        shorter = s1;
-    }
-    let longerLength = longer.length;
-    if (longerLength === 0) return 1.0;
-    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
-}
-
-function editDistance(s1, s2) {
-    s1 = s1.toLowerCase();
-    s2 = s2.toLowerCase();
-    let costs = new Array();
-    for (let i = 0; i <= s1.length; i++) {
-        let lastValue = i;
-        for (let j = 0; j <= s2.length; j++) {
-            if (i == 0) costs[j] = j;
-            else if (j > 0) {
-                let newValue = costs[j - 1];
-                if (s1.charAt(i - 1) != s2.charAt(j - 1)) newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-                costs[j - 1] = lastValue;
-                lastValue = newValue;
-            }
+function calculateAccuracy(input, target) {
+    let correct = 0;
+    for (let i = 0; i < target.length; i++) {
+        if (i < input.length && input[i] === target[i]) {
+            correct++;
         }
-        if (i > 0) costs[s2.length] = lastValue;
     }
-    return costs[s2.length];
+    return target.length > 0 ? correct / target.length : 0;
 }
