@@ -1,0 +1,179 @@
+body {
+    font-family: 'Noto Sans Lao', sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+} 
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 5px solid #87CEEB;
+}
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+h1 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin: 5px 0;
+}
+h2 {
+    color: #e67e22;
+    font-size: 18px;
+    margin: 5px 0;
+}
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff3cd;
+}
+.header-table td {
+    border: 1px solid #87CEEB;
+    padding: 10px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+.header-table input[type="text"] {
+    width: 90%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px dashed #333;
+    background: transparent;
+    font-family: 'Noto Sans Lao', sans-serif;
+    font-size: 16px;
+    border-radius: 0;
+}
+.section-title {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.question-grid {
+    display: block;
+}
+.question {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fafafa;
+    page-break-inside: avoid;
+}
+.question p {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+.options label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+.options label:hover {
+    background-color: #e8f5e9;
+}
+.icon-option {
+    font-size: 24px;
+    margin-right: 10px;
+}
+input[type="radio"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+input[type="text"] {
+    padding: 8px;
+    font-family: 'Noto Sans Lao', sans-serif;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button.submit-btn {
+    background-color: #2196F3;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    font-family: 'Noto Sans Lao', sans-serif;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    transition: background 0.3s;
+}
+button.submit-btn:hover {
+    background-color: #1976D2;
+}
+#result {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    display: none;
+    border-radius: 10px;
+}
+.correct { color: green; }
+.incorrect { color: red; }
+
+/* PDF MODE Styles */
+.pdf-mode {
+    font-family: 'Phetsarath OT', sans-serif !important;
+    width: 100% !important;
+    max-width: 190mm !important; /* ກຳນົດຄວາມກວ້າງໃຫ້ພໍດີ A4 (ລົບຂອບ) */
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: white !important;
+    margin: 0 auto; /* Center in overlay */
+}
+.pdf-mode header { margin-bottom: 2px; }
+.pdf-mode h1 { font-size: 18px; margin: 0; }
+.pdf-mode h2 { font-size: 14px; margin: 0 0 2px 0; }
+.pdf-mode .header-table { margin-bottom: 2px; }
+.pdf-mode .header-table td { padding: 2px; font-size: 12px; }
+.pdf-mode .header-table input[type="text"] { font-size: 12px; padding: 1px; }
+.pdf-mode .section-title { padding: 2px 5px; margin-top: 2px; font-size: 12px; margin-bottom: 2px; }
+.pdf-mode .question-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; } /* ກັບມາໃຊ້ 2 ຖັນເພື່ອປະຢັດພື້ນທີ່ */
+.pdf-mode .question { margin-bottom: 0; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; }
+.pdf-mode .question p { font-size: 12px; margin: 0 0 3px 0; line-height: 1.4; font-weight: bold; color: #000; border-bottom: none; padding-bottom: 0; }
+.pdf-mode .options label { margin: 1px 0; font-size: 11px; padding: 1px 3px; display: block; background-color: transparent; border-radius: 2px; }
+.pdf-mode input[type="radio"] { transform: scale(1); margin-right: 5px; }
+.pdf-mode input[type="text"], .pdf-mode textarea { padding: 2px; font-size: 12px; font-family: 'Phetsarath OT', sans-serif !important; border: 1px solid #ccc; width: 98%; }
+.pdf-mode .submit-btn { display: none !important; }
+.pdf-mode #result { display: none !important; }
+
+/* ປັບແຕ່ງຂໍ້ 7 (ຂໍ້ສຸດທ້າຍ) ໃນ PDF ໃຫ້ຍາວເຕັມໜ້າ */
+.pdf-mode .question:last-child {
+    grid-column: 1 / -1;
+    margin-top: 2px;
+}
+
+/* ປັບແຕ່ງກ່ອງຂໍ້ຄວາມຕົ້ນສະບັບໃນຂໍ້ 7 (ພາກພິມ) ໃຫ້ອ່ານງ່າຍຂຶ້ນໃນ PDF */
+.pdf-mode .question:last-child div {
+    font-size: 12px !important; /* ປັບຂະໜາດຂຶ້ນ */
+    line-height: 1.4 !important;
+    letter-spacing: normal !important; /* ປິດ letter-spacing ເພື່ອແກ້ບັນຫາສະຫຼະລອຍ */
+    padding: 5px !important;
+    background-color: #f9f9f9 !important;
+    border: 1px solid #ddd !important;
+    margin-bottom: 2px !important;
+    font-family: 'Phetsarath OT', sans-serif !important;
+    text-align: justify;
+    text-rendering: geometricPrecision; /* ຊ່ວຍຈັດຕຳແໜ່ງສະຫຼະໃຫ້ຖືກຕ້ອງ */
+}

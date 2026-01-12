@@ -1,0 +1,8 @@
+/* 1. ປະກາດ Font Phetsarath OT ແບບ Base64 */
+@font-face {
+    font-family: 'Phetsarath OT';
+    /* ໃຫ້ເອົາລະຫັດ Base64 ທີ່ແປງມາໄດ້ ມາໃສ່ຕໍ່ຈາກ base64, (ຢ່າລືມເຄື່ອງໝາຍຈຸດ) */
+    src: url(data:font/truetype;charset=utf-8;base64,ວາງ_BASE64_STRING_ທີ່ຍາວໆໃສ່ບ່ອນນີ້) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

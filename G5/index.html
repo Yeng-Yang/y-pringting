@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="lo">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ອານຸບານ 3</title>
+    <!-- ນຳໃຊ້ Font Noto Sans Lao ສຳລັບພາສາລາວ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ເຊື່ອມຕໍ່ໄຟລ໌ CSS -->
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Library ສຳລັບສ້າງ PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <!-- ໃສ່ຮູບໂລໂກ້ບ່ອນນີ້ (ປ່ຽນ logo.png ເປັນຊື່ໄຟລ໌ຮູບຂອງທ່ານ) -->
+            <img src="logo.jpeg" alt="Logo" style="width: 100%; height: 3cm; object-fit: fill; margin-bottom: 10px;">
+            <h1>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ພາກຮຽນທີ I ປີ 2025-2026</h1>
+            <h2>ຊັ້ນປະຖົມສຶກສາປີທີ 5</h2>
+        </header>
+
+        <table class="header-table">
+            <tr>
+                <td width="50%">ຊື່ ແລະ ນາມສະກຸນ:<br><input type="text" id="studentName" placeholder="..."></td>
+                <td width="20%" align="center">ຄະແນນ<br><span id="scoreDisplay"
+                        style="font-size: 18px; font-weight: bold; color: red;"></span></td>
+                <td width="30%">ຄຳເຫັນຂອງຄູ:<br><span id="teacherComment" style="color: blue; font-weight: bold;"></span></td>
+            </tr>
+        </table>
+
+        <form id="quizForm">
+            <!-- ພາກທີ 1 -->
+            <div class="section-title">ພາກທີ 1: ຄວາມຮູ້ພື້ນຖານກ່ຽວກັບຄອມພິວເຕີ</div>
+            <p style="margin: 10px 0;">ຈົ່ງເລືອກເອົາຄຳຕອບທີ່ຖືກຕ້ອງທີ່ສຸດພຽງຂໍ້ດຽວ</p>
+
+            <div class="question-grid">
+
+                <div class="question">
+                    <p>1. ປຣແກຣມໃດທີ່ຖືກອອກແບບມາເພື່ອໃຊ້ສຳລັບການ ຄິດໄລ່ຕົວເລກ, ການຈັດການຂໍ້ມູນໃນຮູບແບບ ຕາຕະລາງ ແລະ
+                        ການສ້າງແຜນພູມ?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> ກ. Microsoft Word</label>
+                        <label><input type="radio" name="q1" value="b"> ຂ. Microsoft Excel</label>
+                        <label><input type="radio" name="q1" value="c"> ຄ. Microsoft PowerPoint</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>2. ຖ້າທ່ານຕ້ອງການຫາ ຜົນລວມ (Total) ຂອງຂໍ້ມູນໃນຖັນ A ຕັ້ງແຕ່ແຖວທີ 1 ຫາ 10,
+                        ທ່ານຄວນໃຊ້ສູດໃນຂໍ້ໃດຈຶ່ງຈະຖືກຕ້ອງທີ່ສຸດ?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> ກ. =SUM(A1:A10)</label>
+                        <label><input type="radio" name="q2" value="b"> ຂ. =TOTAL(A1:A10)</label>
+                        <label><input type="radio" name="q2" value="c"> ຄ. =PLUS(A1:A10)</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>3. ໃນການນຳໃຊ້ Excel, ກ່ອນຈະປ້ອນສູດຄິດໄລ່ ຫຼື ຟັງຊັນຕ່າງໆລົງໃນ Cell,
+                        ທ່ານຕ້ອງພິມເຄື່ອງໝາຍໃດເປັນອັນດັບທຳອິດສະເໝີ?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> ກ. ເຄື່ອງໝາຍບວກ (+)</label>
+                        <label><input type="radio" name="q3" value="b"> ຂ. ເຄື່ອງໝາຍດອກຈັນ (*)</label>
+                        <label><input type="radio" name="q3" value="c"> ຄ. ເຄື່ອງໝາຍເທົ່າກັບ (=)</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>4. ອຸປະກອນໃດທີ່ປຽບເໝືອນ "ສະໝອງ" ຂອງຄອມພິວເຕີ?</p>
+                    <input type="text" name="q4" placeholder="ພິມຄຳຕອບ..."
+                        style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 5px;">
+                </div>
+
+                <div class="question">
+                    <p>5. ໂປຣແກຣມ Microsoft PowerPoint ຖືກອອກແບບມາເພື່ອຈຸດປະສົງຫຼັກໃນການເຮັດວຽກດ້ານໃດ?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> ກ. ການຄິດໄລ່ບັນຊີ ແລະ ຂໍ້ມູນສະຖິຕິ</label>
+                        <label><input type="radio" name="q5" value="b"> ຂ. ການຈັດການລະບົບຖານຂໍ້ມູນຂະໜາດໃຫຍ່</label>
+                        <label><input type="radio" name="q5" value="c"> ຄ. ການອອກແບບ ແລະ ສ້າງສື່ນຳສະເໜີ
+                            (Presentation)</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>6. ປຸ່ມທີ່ມີຮູບຕົວ A ແລະ ມີສີຢູ່ກ້ອງ ໃຊ້ເພື່ອຫຍັງ?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> ກ. ປ່ຽນສີຕົວອັກສອນ</label>
+                        <label><input type="radio" name="q6" value="b"> ຂ. ໃສ່ສີພື້ນຫຼັງໃຫ້ຂໍ້ຄວາມ</label>
+                        <label><input type="radio" name="q6" value="c"> ຄ. ເຮັດໃຫ້ຕົວອັກສອນເປັນຕົວໜາ</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>7. ຈົ່ງພິມຂໍ້ຄວາມລຸ່ມນີ້ໃຫ້ຖືກຕ້ອງ:</p>
+                    <div oncopy="return false" oncut="return false" ondragstart="return false"
+                        style="background-color: #e9ecef; padding: 20px; border-radius: 4px; margin-bottom: 15px; font-weight: bold; line-height: 1.8; font-size: 24px; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+                        I want to apologize for every time I made you sad or disappointed. Today, I realize that my success in every step comes from your support and blessings. Finally, nothing is more valuable than the word "Thank you". I promise to be a good person, to build a good future to repay your kindness, and to make you smile and be proud forever. I wish you good health and to stay with us for a long time.</div>
+                    <textarea name="q7" placeholder="ພິມຂໍ້ຄວາມຂ້າງເທິງຄືນໃສ່ບ່ອນນີ້..." rows="8" onpaste="return false" ondrop="return false" autocomplete="off"
+                        style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Noto Sans Lao', sans-serif; font-size: 24px; line-height: 1.6;"></textarea>
+                </div>
+
+            </div>
+
+            <button type="button" class="submit-btn" id="submitBtn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+        </form>
+
+    </div>
+    <div id="result"></div>
+
+    <!-- ເຊື່ອມຕໍ່ໄຟລ໌ JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
