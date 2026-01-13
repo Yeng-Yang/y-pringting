@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ຊັ້ນປະຖົມສຶກສາປີທີ 4</title>
+    <!-- ນຳໃຊ້ Font Noto Sans Lao ສຳລັບພາສາລາວ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ເຊື່ອມຕໍ່ໄຟລ໌ CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Library ສຳລັບສ້າງ PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        /* CSS ສຳລັບເກມຈັບຄູ່ (ລາກເສັ້ນ) */
+        .matching-game-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 20px 0;
+            user-select: none; /* ປ້ອງກັນການເລືອກຕົວໜັງສືເວລາລາກ */
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 2;
+            width: 45%;
+        }
+        .match-item {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 14px;
+        }
+        .match-item:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+        .match-item.selected {
+            background-color: #cce5ff;
+            border-color: #007bff;
+        }
+        .match-item.connected {
+            border-color: #28a745;
+            background-color: #d4edda;
+        }
+        #matchingCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none; /* ໃຫ້ຄລິກຜ່ານ Canvas ໄປຖືກປຸ່ມໄດ້ */
+        }
+        /* ຈຸດເຊື່ອມຕໍ່ */
+        .match-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            background-color: #6c757d;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        #col-left .match-item::before {
+            right: -6px;
+        }
+        #col-right .match-item::before {
+            left: -6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <!-- ໃສ່ຮູບໂລໂກ້ບ່ອນນີ້ (ປ່ຽນ logo.png ເປັນຊື່ໄຟລ໌ຮູບຂອງທ່ານ) -->
+        <img src="logo.jpeg" alt="Logo" style="width: 100%; height: 3cm; object-fit: fill; margin-bottom: 10px;">
+        <h1>ບົດສອບເສັງ ວິຊາຄອມພິວເຕີ ພາກຮຽນທີ I ປີ 2025-2026</h1>
+        <h2>ຫ້ອງ ຊັ້ນປະຖົມສຶກສາປີທີ 4</h2>
+    </header>
+
+    <table class="header-table">
+        <tr>
+            <td width="50%">ຊື່ ແລະ ນາມສະກຸນ:<br><input type="text" id="studentName" placeholder="..."></td>
+            <td width="20%" align="center">ຄະແນນ<br><span id="scoreDisplay" style="font-size: 18px; font-weight: bold; color: red;"></span></td>
+            <td width="30%">ຄຳເຫັນຂອງຄູ:<br><span id="teacherComment" style="color: blue; font-weight: bold;"></span></td>
+        </tr>
+    </table>
+
+    <form id="quizForm">
+        <!-- ພາກທີ 1 -->
+        <h3>ພາກທີ I: ຄວາມຮູ້ທົ່ວໄປກ່ຽວກັບການໃຊ້ຄອມພິວເຕີ</h3>
+
+        <div class="question">
+            <p>1. ອຸປະກອນໃດລຸ່ມນີ້ ທີ່ເຮົາໃຊ້ສຳລັບ ປ້ອນຂໍ້ມູນຕົວອັກສອນ, ຕົວເລກ ແລະ ສັນຍະລັກຕ່າງໆ ເຂົ້າໃນຄອມພິວເຕີ?</p>
+            <label><input type="radio" name="q1" value="a"> ກ. ເມົາສ໌ (Mouse)</label><br>
+            <label><input type="radio" name="q1" value="b"> ຂ. ແປ້ນພິມ (Keyboard)</label><br>
+            <label><input type="radio" name="q1" value="c"> ຄ. ໜ້າຈໍ (Monitor)</label>
+        </div>
+
+        <div class="question">
+            <p>2. ອຸປະກອນໃດທີ່ເຮັດໜ້າທີ່ໃນການ "ສະແດງຜົນພາບ" ໃຫ້ເຮົາເຫັນ?</p>
+            <label><input type="radio" name="q2" value="a"> ກ. ຄີບອດ (Keyboard)</label><br>
+            <label><input type="radio" name="q2" value="b"> ຂ. ເມົາສ໌ (Mouse)</label><br>
+            <label><input type="radio" name="q2" value="c"> ຄ. ຈໍພາບ (Monitor)</label><br>
+            <label><input type="radio" name="q2" value="d"> ງ. ເຄື່ອງພິມ (Printer)</label>
+        </div>
+
+        <div class="question">
+            <p>3. ຖ້າຢາກປ່ຽນ "ຂະໜາດ" ຂອງຕົວໜັງສືໃຫ້ໃຫຍ່ຂຶ້ນ ຫຼື ນ້ອຍລົງ ຕ້ອງເລືອກທີ່ເມນູໃດ?</p>
+            <label><input type="radio" name="q3" value="a"> ກ. Font Color</label><br>
+            <label><input type="radio" name="q3" value="b"> ຂ. Font Size</label><br>
+            <label><input type="radio" name="q3" value="c"> ຄ. Bold</label><br>
+            <label><input type="radio" name="q3" value="d"> ງ. Italic</label>
+        </div>
+
+        <h3>ພາກທີ II: ເບິ່ງຮູບພາບສັນຍະລັກ (Icons) ແລ້ວຕອບຄຳຖາມ</h3>
+
+        <div class="question">
+            <p>4. ປຸ່ມທີ່ມີຮູບຕົວ A ແລະ ມີແຖບສີຢູ່ກ້ອງ ໃຊ້ສຳລັບຫຍັງ?</p>
+            <label><input type="radio" name="q4" value="a"> ກ. ປ່ຽນຮູບແບບຕົວໜັງສື</label><br>
+            <label><input type="radio" name="q4" value="b"> ຂ. ປ່ຽນສີຕົວໜັງສື</label><br>
+            <label><input type="radio" name="q4" value="c"> ຄ. ຂີດກ້ອງຕົວໜັງສື</label><br>
+            <label><input type="radio" name="q4" value="d"> ງ. ລຶບຕົວໜັງສື</label>
+        </div>
+
+        <div class="question">
+            <p>5. ປຸ່ມທີ່ມີຮູບ "ຢາງລຶບ" (Clear All Formatting) ໃຊ້ເພື່ອຫຍັງ?</p>
+            <label><input type="radio" name="q5" value="a"> ກ. ລຶບຂໍ້ຄວາມທັງໝົດ</label><br>
+            <label><input type="radio" name="q5" value="b"> ຂ. ລ້າງຮູບແບບ (ໃຫ້ກັບໄປເປັນຄ່າເລີ່ມຕົ້ນ)</label><br>
+            <label><input type="radio" name="q5" value="c"> ຄ. ປິດໂປຣແກຣມ</label><br>
+            <label><input type="radio" name="q5" value="d"> ງ. ລຶບຮູບພາບ</label>
+        </div>
+
+        <div class="question">
+            <p>6. ປຸ່ມ Center (ຮູບເສັ້ນຂີດຢູ່ເຄິ່ງກາງ) ໃຊ້ເພື່ອຫຍັງ?</p>
+            <label><input type="radio" name="q6" value="a"> ກ. ຈັດຂໍ້ຄວາມໄວ້ທາງຊ້າຍ</label><br>
+            <label><input type="radio" name="q6" value="b"> ຂ. ຈັດຂໍ້ຄວາມໄວ້ທາງຂວາ</label><br>
+            <label><input type="radio" name="q6" value="c"> ຄ. ຈັດຂໍ້ຄວາມໄວ້ກາງໜ້າເຈ້ຍ</label><br>
+            <label><input type="radio" name="q6" value="d"> ງ. ເຮັດໃຫ້ຕົວໜັງສືເຂັ້ມ</label>
+        </div>
+
+        <div class="question">
+            <p>7. ສັນຍະລັກຕົວອັກສອນ W ສີຟ້າ ໝາຍເຖິງໂປຣແກຣມຫຍັງ?</p>
+            <label><input type="radio" name="q7" value="a"> ກ. Microsoft Excel</label><br>
+            <label><input type="radio" name="q7" value="b"> ຂ. Microsoft PowerPoint</label><br>
+            <label><input type="radio" name="q7" value="c"> ຄ. Microsoft Word</label><br>
+            <label><input type="radio" name="q7" value="d"> ງ. Microsoft Paint</label>
+        </div>
+
+        <div class="question">
+            <p>8. ໃນໂປຣແກຣມແຕ້ມຮູບ, ເຄື່ອງມືຮູບ "ສໍ" ໃຊ້ເພື່ອຫຍັງ?</p>
+            <label><input type="radio" name="q8" value="a"> ກ. ຖອກສີໃສ່ຮູບ</label><br>
+            <label><input type="radio" name="q8" value="b"> ຂ. ແຕ້ມຮູບດ້ວຍມື (ແບບອິດສະຫຼະ)</label><br>
+            <label><input type="radio" name="q8" value="c"> ຄ. ພິມຕົວໜັງສື</label><br>
+            <label><input type="radio" name="q8" value="d"> ງ. ລຶບເສັ້ນທີ່ແຕ້ມຜິດ</label>
+        </div>
+
+        <div class="question">
+            <p>9. ເຄື່ອງມືຮູບຕົວ A ທີ່ຢູ່ໃນໂປຣແກຣມແຕ້ມຮູບ (Paint) ໃຊ້ເພື່ອຫຍັງ?</p>
+            <label><input type="radio" name="q9" value="a"> ກ. ໃຊ້ລຶບຮູບ</label><br>
+            <label><input type="radio" name="q9" value="b"> ຂ. ໃຊ້ລະບາຍສີ</label><br>
+            <label><input type="radio" name="q9" value="c"> ຄ. ໃຊ້ພິມຂໍ້ຄວາມໃສ່ຮູບ</label><br>
+            <label><input type="radio" name="q9" value="d"> ງ. ໃຊ້ຊູມຮູບ</label>
+        </div>
+
+        <div class="question">
+            <p>10. ເຄື່ອງມື Shapes ທີ່ເປັນຮູບວົງມົນ ແລະ ສີ່ແຈ ໃຊ້ເພື່ອຫຍັງ?</p>
+            <label><input type="radio" name="q10" value="a"> ກ. ເລືອກຮູບຊົງຕ່າງໆ (ເຊັ່ນ: ດາວ, ຫົວໃຈ, ວົງມົນ)</label><br>
+            <label><input type="radio" name="q10" value="b"> ຂ. ໃຊ້ປ່ຽນສີພື້ນຫຼັງ</label><br>
+            <label><input type="radio" name="q10" value="c"> ຄ. ໃຊ້ຕັດຮູບພາບ</label><br>
+            <label><input type="radio" name="q10" value="d"> ງ. ໃຊ້ຂະຫຍາຍໜ້າເຈ້ຍ</label>
+        </div>
+
+        <div class="question">
+            <p>11. ເຄື່ອງມື Eraser (ຢາງລຶບ) ໃຊ້ເພື່ອຫຍັງ?</p>
+            <label><input type="radio" name="q11" value="a"> ກ. ໃຊ້ແຕ້ມເສັ້ນຊື່</label><br>
+            <label><input type="radio" name="q11" value="b"> ຂ. ໃຊ້ລຶບສ່ວນທີ່ບໍ່ຕ້ອງການອອກ</label><br>
+            <label><input type="radio" name="q11" value="c"> ຄ. ໃຊ້ເລືອກສີ</label><br>
+            <label><input type="radio" name="q11" value="d"> ງ. ໃຊ້ບັນທຶກວຽກ</label>
+        </div>
+
+        <div class="question">
+            <p>12. ຈັບຄູ່ຄຳສັບໃຫ້ຖືກຕ້ອງ</p>
+            <p style="font-size: 14px; color: #666;">(ຄຳແນະນຳ: ໃຊ້ນິ້ວ ຫຼື ເມົາສ໌ ລາກເສັ້ນຈາກຂໍ້ທາງຊ້າຍ ໄປຫາຂໍ້ທາງຂວາ)</p>
+            <button type="button" id="resetMatchingBtn" style="background-color: #ffc107; color: #333; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-family: 'Noto Sans Lao', sans-serif;">↺ ລຶບເສັ້ນທັງໝົດ</button>
+            
+            <div class="matching-game-container" id="matchingGame">
+                <canvas id="matchingCanvas"></canvas>
+                
+                <div class="column" id="col-left">
+                    <div class="match-item" data-val="1">1. Microsoft Word</div>
+                    <div class="match-item" data-val="2">2. Microsoft Excel</div>
+                    <div class="match-item" data-val="3">3. Microsoft PowerPoint</div>
+                    <div class="match-item" data-val="4">4. Microsoft Access</div>
+                    <div class="match-item" data-val="5">5. Microsoft Outlook</div>
+                </div>
+
+                <div class="column" id="col-right">
+                    <div class="match-item" data-val="a">A. ໃຊ້ສຳລັບສ້າງງານນຳສະເໜີ (Presentation) ດ້ວຍ Slide.</div>
+                    <div class="match-item" data-val="b">B. ໃຊ້ສຳລັບການຈັດການຖານຂໍ້ມູນ (Database) ຂະໜາດໃຫຍ່.</div>
+                    <div class="match-item" data-val="c">C. ໃຊ້ສຳລັບພິມເອກະສານ, ບົດລາຍງານ ແລະ ໜັງສືທາງການ.</div>
+                    <div class="match-item" data-val="d">D. ໃຊ້ສຳລັບການຈັດການອີເມວ (Email) ແລະ ປະຕິທິນນັດໝາຍ.</div>
+                    <div class="match-item" data-val="e">E. ໃຊ້ສຳລັບການຄິດໄລ່ເລກ, ສ້າງຕາຕະລາງ ແລະ ກຣາຟ (Charts).</div>
+                </div>
+            </div>
+
+            <!-- Hidden Inputs ສຳລັບເກັບຄຳຕອບ -->
+            <input type="hidden" name="q12_1" id="input_q12_1">
+            <input type="hidden" name="q12_2" id="input_q12_2">
+            <input type="hidden" name="q12_3" id="input_q12_3">
+            <input type="hidden" name="q12_4" id="input_q12_4">
+            <input type="hidden" name="q12_5" id="input_q12_5">
+        </div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="checkAnswers()">ສົ່ງບົດສອບເສັງ</button>
+    </form>
+
+</div>
+<div id="result"></div>
+
+<!-- ເຊື່ອມຕໍ່ໄຟລ໌ JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
