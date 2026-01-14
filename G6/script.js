@@ -1,6 +1,6 @@
 const q11Text = "ລູກຈະນຳເອົາຄວາມຮູ້ເຫຼົ່ານີ້ໄປສ້າງອະນາຄົດ ແລະ ເປັນທີ່ພຶ່ງພາຂອງຄອບຄົວໃຫ້ໄດ້ໃນວັນຂ້າງໜ້າ.";
 const q12Text = "I will use this knowledge to build a successful future and take care of our family in the years to come.";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz4A8RM7nnJZB0_CpjAdYcvz69ndt7u9siuBOFfbkt4lFfiQ-iwl7q3fFZrdjQik5mNaQ/exec"; // ປ່ຽນ URL ນີ້ເປັນ Web App URL ຂອງທ່ານ
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrwhzZfNYXW0TOO82OxD8Vrku0meRZ8d6_yJwLU4VBXoP7rffMzPkQu5ZMMmQ9R0c/exec"; // ປ່ຽນ URL ນີ້ເປັນ Web App URL ຂອງທ່ານ
 const GOOGLE_DRIVE_FOLDER_ID = "135Ryql4cwxEhqxkI0gYll21IQSmsKAfy"; // ID ຂອງໂຟນເດີ Google Drive
 
 let currentTab = 0;
@@ -49,6 +49,11 @@ function setupTyping(displayId, inputId, targetText) {
     // ປ້ອງກັນການ Paste ຜ່ານ JS ເພີ່ມເຕີມ
     input.addEventListener('paste', e => e.preventDefault());
     input.addEventListener('copy', e => e.preventDefault());
+    
+    // ເພີ່ມການກວດສອບແບບ Real-time ເວລາພິມ (ພິມປຸບ ກວດປັບ)
+    input.addEventListener('input', () => {
+        renderText(display, targetText, input.value);
+    });
     
     // ສະແດງຂໍ້ຄວາມເລີ່ມຕົ້ນ (ສີເທົາ)
     renderText(display, targetText, "");
@@ -139,7 +144,10 @@ function checkAnswers() {
     resultDiv.style.backgroundColor = "transparent";
     resultDiv.style.color = "inherit";
 
-    generateAndUploadPDF(studentName);
+    generateAndUploadPDF(studentName, score);
+    
+    // ເລື່ອນລົງມາທີ່ຜົນຄະແນນ (ເພື່ອໃຫ້ເຫັນສະຖານະການສົ່ງ)
+    resultDiv.scrollIntoView({behavior: 'smooth'});
 
     // Hide UI elements to prevent cheating/sharing (ເຊື່ອງຟອມທັງໝົດ)
     document.querySelector('header').style.display = 'none';
@@ -147,7 +155,7 @@ function checkAnswers() {
     document.getElementById('quizForm').style.display = 'none';
 }
 
-function generateAndUploadPDF(studentName) {
+function generateAndUploadPDF(studentName, score) {
     const originalElement = document.querySelector(".container");
     const resultDiv = document.getElementById('result');
     
@@ -285,7 +293,7 @@ function generateAndUploadPDF(studentName) {
                 return;
             }
 
-            uploadToGoogleDrive(blob, studentName);
+            uploadToGoogleDrive(blob, studentName, score);
         }).catch(err => {
             console.warn("ເກີດຂໍ້ຜິດພາດກັບຮູບພາບ, ກຳລັງລອງໃໝ່ໂດຍບໍ່ມີ Logo...", err);
             
@@ -299,7 +307,7 @@ function generateAndUploadPDF(studentName) {
                     document.getElementById('result').innerHTML += "<p style='color:red; font-weight:bold; font-size: 18px;'>❌ ບໍ່ມີສັນຍານອິນເຕີເນັດ! ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ແລ້ວລອງໃໝ່.</p>";
                     return;
                 }
-                uploadToGoogleDrive(blob, studentName);
+                uploadToGoogleDrive(blob, studentName, score);
             }).catch(finalErr => {
                 console.error(finalErr);
                 document.body.removeChild(pdfOverlay);
@@ -309,7 +317,7 @@ function generateAndUploadPDF(studentName) {
     }, 1000);
 }
 
-function uploadToGoogleDrive(blob, studentName) {
+function uploadToGoogleDrive(blob, studentName, score) {
     document.getElementById('result').innerHTML += "<p style='color:blue'>⏳ ກຳລັງສົ່ງໄປ Google Drive... (ກະລຸນາລໍຖ້າ)</p>";
     const reader = new FileReader();
     reader.readAsDataURL(blob);
@@ -321,7 +329,9 @@ function uploadToGoogleDrive(blob, studentName) {
             base64: base64data,
             filename: studentName + "_exam.pdf",
             mimetype: "application/pdf",
-            folderId: GOOGLE_DRIVE_FOLDER_ID
+            folderId: GOOGLE_DRIVE_FOLDER_ID,
+            studentName: studentName.trim(),
+            score: score
         };
 
         fetch(GOOGLE_SCRIPT_URL, { 
@@ -331,7 +341,7 @@ function uploadToGoogleDrive(blob, studentName) {
         .then(response => response.text())
         .then(data => { 
             if (data.includes("Success")) {
-                document.getElementById('result').innerHTML += "<p style='color:green'>✅ ສົ່ງໄປ Google Drive ສຳເລັດ!</p>"; 
+                document.getElementById('result').innerHTML += "<p style='color:green'>✅ ສົ່ງໄປ Google Drive ແລະ ບັນທຶກຄະແນນສຳເລັດ!</p>"; 
                 localStorage.setItem('submitted_' + studentName.trim(), 'true'); // ບັນທຶກວ່າຊື່ນີ້ສົ່ງແລ້ວ
 
                 // Reset ຟອມຫຼັງຈາກ 5 ວິນາທີ
