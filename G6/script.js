@@ -50,11 +50,6 @@ function setupTyping(displayId, inputId, targetText) {
     input.addEventListener('paste', e => e.preventDefault());
     input.addEventListener('copy', e => e.preventDefault());
     
-    // ເພີ່ມການກວດສອບແບບ Real-time ເວລາພິມ (ພິມປຸບ ກວດປັບ)
-    input.addEventListener('input', () => {
-        renderText(display, targetText, input.value);
-    });
-    
     // ສະແດງຂໍ້ຄວາມເລີ່ມຕົ້ນ (ສີເທົາ)
     renderText(display, targetText, "");
 }
